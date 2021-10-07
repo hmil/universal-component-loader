@@ -5,22 +5,33 @@ const mode = process.env.NODE_ENV || 'development';
 const prod = mode === 'production';
 
 module.exports = /** @type import('webpack').Configuration */({
-    entry: './src/main.ts',
-    // devtool: 'inline-source-map',
+    entry: {
+        'main': './src/main.ts',
+        'widget': './src/widget/index.ts'
+    },
+    devtool: false,
     mode,
     resolve: {
         // see below for an explanation
         alias: {
             svelte: path.resolve('node_modules', 'svelte')
         },
-        extensions: ['.mjs', '.js', 'ts', '.svelte'],
+        extensions: ['.mjs', '.js', '.ts', '.svelte'],
         mainFields: ['svelte', 'browser', 'module', 'main']
     },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js',
-        publicPath: 'auto'
+        publicPath: 'auto',
+        library: {
+            // name: ['SvelteConsumer', '[name]'],
+            type: 'umd'
+        },
+        environment: { module: true },
     },
+    // experiments: {
+    //     outputModule: true
+    // },
     module: {
         rules: [{
             test: /\.tsx?/,
@@ -32,7 +43,8 @@ module.exports = /** @type import('webpack').Configuration */({
                 loader: 'svelte-loader',
                 options: {
                     compilerOptions: {
-                        dev: !prod
+                        dev: !prod,
+                        customElement: true
                     },
                     emitCss: false,
                     hotReload: false,
@@ -47,11 +59,17 @@ module.exports = /** @type import('webpack').Configuration */({
             }
         }]
     },
-    devServer: {
-        static: {
-            directory: path.join(__dirname, "public"),
+    externals: {
+        'react': 'react',
+        'react-dom': 'react-dom',
+        'svelte': 'svelte',
+        'svelte/internal': 'svelte/internal',
+        'svelte/compiler': 'svelte/compiler',
+    },
+    externalsType: 'commonjs',
+    optimization: {
+        runtimeChunk: {
+            name: 'runtime',
         },
-        port: 3000,
-        hot: false,
-    }
+    },
 });

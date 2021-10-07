@@ -1,25 +1,28 @@
 {
-  "name": "@hmil/test-svelte-consumer",
-  "version": "1.0.0",
+  "name": "@hmil/test-svelte",
+  "version": "0.0.0",
   "private": true,
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-cli serve"
+    "build": "rollup -c rollup.config.js"
   },
   "devDependencies": {
     "@hmil/test-react-producer": "0.0.0",
-    "@hmil/test-svelte-producer": "0.0.0",
     "@hmil/ucl-svelte": "0.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/plugin-typescript": "^8.2.5",
     "@tsconfig/svelte": "^2.0.0",
-    "svelte": "^3.0.0",
+    "rollup-plugin-svelte": "^7.1.0",
+    "rollup": "^2.58.0",
     "svelte-check": "^2.0.0",
     "svelte-loader": "^3.1.2",
     "svelte-preprocess": "^4.0.0",
+    "svelte": "^3.0.0",
     "ts-loader": "^9.2.6",
     "tslib": "^2.0.0",
     "typescript": "^4.0.0",
-    "webpack": "^5.57.1",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.3.1"
+    "webpack": "^5.57.1"
   }
 }

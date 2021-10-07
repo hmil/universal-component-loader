@@ -1,7 +1,9 @@
+<svelte:options tag="my-svelte-app" />
+
 <script lang="ts">
-    import { MyReactComponentSpec } from '@hmil/test-react-producer';
+    import { MyReactComponentSpec } from '@hmil/test-react/widget';
     import { loadComponent } from '@hmil/ucl-svelte';
-    import { MySvelteComponentSpec } from '@hmil/test-svelte-producer';
+    import { MySvelteComponentSpec } from './widget';
 
 
     const date = new Date();

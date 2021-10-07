@@ -1,7 +1,7 @@
 import * as React from "react";
-import { MySvelteComponentSpec } from '@hmil/test-svelte-producer';
-import { MyReactComponentSpec } from '@hmil/test-react-producer';
-import { loadComponent } from '@hmil/ucl-react';
+import { MySvelteComponentSpec } from '@hmil/test-svelte/widget';
+import { defineReactElement, loadComponent } from '@hmil/ucl-react';
+import { MyReactComponentSpec } from "./widget";
 
 const SvelteComponent = loadComponent(MySvelteComponentSpec);
 const ReactComponent = loadComponent(MyReactComponentSpec);
@@ -19,3 +19,8 @@ export function App() {
         <ReactComponent user={user} title="hello" onSetUser={(evt) => setUser(evt.detail)} />
     </>;
 }
+
+defineReactElement('my-react-app', App, {
+    user: { name: 'tmp', birthdate: new Date() },
+    title: undefined
+}, []);
