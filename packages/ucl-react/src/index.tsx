@@ -9,14 +9,22 @@ type MapEvents<E> = { [k in ToReactEventName<keyof E>]?: (evt: E[ToEventName<k>]
 export function loadComponent<P extends {}, E extends {}>(def: ComponentBundle<P, E>) {
 
     return function ComponentLoader(props: P & MapEvents<E>) {
-        const [TagName, setTagName] = React.useState<string | null>(null);
+        const TagName = def.TAG_NAME;
+        const [loaded, setLoaded] = React.useState(false);
 
         const ref = React.useRef<HTMLElement>(null);
 
         React.useEffect(() => {
+            let mounted = true;
             Promise.resolve(def.load()).then(() => {
-                setTagName(def.TAG_NAME);
+                if (mounted) {
+                    setLoaded(true);
+                }
             });
+
+            return () => {
+                mounted = false;
+            };
         }, []);
 
         const events = Object.keys(props).filter(k => /^on[A-Z]/.test(k)).map(k => {
@@ -55,9 +63,9 @@ export function loadComponent<P extends {}, E extends {}>(def: ComponentBundle<P
 
         return <>
             { 
-                TagName != null
+                loaded
                 // @ts-ignore
-                ? <TagName ref={ref} />
+                ? <def.TAG_NAME ref={ref} />
                 : <div dangerouslySetInnerHTML={{__html: def.placeholder ?? DEFAULT_PLACEHOLDER }}></div>
             }
         </>;

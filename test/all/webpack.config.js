@@ -14,6 +14,10 @@ module.exports = /** @type import('webpack').Configuration */({
         filename: '[name].js',
         publicPath: 'auto'
     },
+    // optimization: {
+    //     usedExports: true,
+    //     nodeEnv: mode
+    // },
     // module: {
     //     rules: [{
     //         test: /\.tsx?/,

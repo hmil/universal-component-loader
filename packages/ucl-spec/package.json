@@ -5,6 +5,7 @@
     "types": "dist/index.d.ts",
     "author": "Hadrien Milano <hadrien.milano@appdynamics.com>",
     "license": "MIT",
+    "sideEffects": false,
     "scripts": {
         "build": "tsc -p .",
         "dev": "tsc -p . --watch"

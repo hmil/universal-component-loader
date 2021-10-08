@@ -6,7 +6,8 @@
     "author": "Hadrien Milano <hadrien.milano@appdynamics.com>",
     "license": "MIT",
     "scripts": {
-        "dev": "lerna run --parallel dev"
+        "dev": "lerna run --parallel dev",
+        "build": "lerna run build"
     },
     "workspaces": {
         "packages": [
