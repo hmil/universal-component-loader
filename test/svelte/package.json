@@ -5,10 +5,11 @@
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.config.js"
+    "build": "rollup -c rollup.config.js",
+    "dev": "rollup -c rollup.config.js --watch"
   },
   "devDependencies": {
-    "@hmil/test-react-producer": "0.0.0",
+    "@hmil/test-common": "0.0.0",
     "@hmil/ucl-svelte": "0.0.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-typescript": "^8.2.5",

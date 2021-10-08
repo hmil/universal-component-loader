@@ -27,6 +27,7 @@ export function loadComponent<P extends {}, E extends {}>(def: ComponentBundle<P
         });
 
         React.useEffect(() => {
+            const currentRef = ref.current;
             events.forEach(evt => {
                 const handler = evt.handler;
                 if (handler != null && ref.current != null) {
@@ -37,8 +38,8 @@ export function loadComponent<P extends {}, E extends {}>(def: ComponentBundle<P
             return () => {
                 events.forEach(evt => {
                     const handler = evt.handler;
-                    if (handler != null && ref.current != null) {
-                        ref.current.removeEventListener(evt.name, evt.handler as any);
+                    if (handler != null && currentRef != null) {
+                        currentRef.removeEventListener(evt.name, evt.handler as any);
                     }
                 });
             };
@@ -107,6 +108,16 @@ export function defineReactElement<P>(
         private _propCache: Record<PropertyKey, any> = {};
         private _listeners: Record<PropertyKey, any> = {};
         private _mountPoint: HTMLElement;
+
+        static get observedAttributes() {
+            return Object.keys(props);
+        }
+
+        attributeChangedCallback(name: PropertyKey, oldValue: any, newValue: any) {
+            this._propCache[name] = newValue;
+            this._refresh();
+        }
+
         constructor() {
             super();
             Object.keys(props).forEach(key => {
@@ -131,6 +142,7 @@ export function defineReactElement<P>(
             const props: Record<PropertyKey, any> = {};
             Object.assign(props, this._propCache);
             Object.assign(props, this._listeners);
+            // ReactDOM.unmountComponentAtNode(this._mountPoint);
             ReactDOM.render(React.createElement(Component, props, null), this._mountPoint);
         }
     }

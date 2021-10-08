@@ -8,14 +8,14 @@
     "license": "MIT",
     "scripts": {
         "build": "cross-env NODE_ENV=production webpack",
-        "start": "webpack-cli serve"
+        "dev": "webpack-cli serve"
     },
     "devDependencies": {
         "@hmil/test-react": "0.0.0",
         "@hmil/test-svelte": "0.0.0",
         "@hmil/ucl-react": "0.0.0",
-        "@hmil/ucl-svelte": "0.0.0",
         "@hmil/ucl-spec": "0.0.0",
+        "@hmil/ucl-svelte": "0.0.0",
         "@types/react": "^17.0.27",
         "@types/react-dom": "^17.0.9",
         "cross-env": "^7.0.3",

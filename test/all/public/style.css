@@ -1,0 +1,9 @@
+main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.row {
+    height: 100px;
+    text-align: center;
+}

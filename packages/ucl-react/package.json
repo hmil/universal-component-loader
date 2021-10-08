@@ -5,7 +5,8 @@
     "author": "Hadrien Milano <hadrien.milano@appdynamics.com>",
     "license": "MIT",
     "scripts": {
-        "build": "tsc -p ."
+        "build": "tsc -p .",
+        "dev": "tsc -p . --watch"
     },
     "devDependencies": {
         "@hmil/ucl-spec": "0.0.0",

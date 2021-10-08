@@ -5,10 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO</title>
-    <script src="./main.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="./main.js"></script>
 </head>
 <body>
-    <my-svelte-app></my-svelte-app>
-    <my-react-app></my-react-app>
+    <main>
+        <div class="row">
+            <my-svelte-app target="react" style="height: 100px; width: 100%"></my-svelte-app>
+        </div>
+        <div class="row">
+            <my-svelte-app target="svelte" style="height: 100px; width: 100%"></my-svelte-app>
+        </div>
+        <div class="row">
+            <my-react-app target="react"></my-react-app>
+        </div>
+        <div class="row">
+            <my-react-app target="svelte"></my-react-app>
+        </div>
+    </main>
 </body>
 </html>

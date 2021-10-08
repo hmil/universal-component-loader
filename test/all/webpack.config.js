@@ -4,7 +4,7 @@ const mode = process.env.NODE_ENV || 'development';
 
 module.exports = /** @type import('webpack').Configuration */({
     entry: './src/main.js',
-    devtool: false,
+    // devtool: false,
     mode,
     resolve: {
         extensions: ['.js'],

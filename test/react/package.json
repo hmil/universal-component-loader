@@ -7,23 +7,25 @@
     "author": "Hadrien Milano <hadrien.milano@appdynamics.com>",
     "license": "MIT",
     "scripts": {
-        "build": "rollup -c rollup.config.js"
-      },
+        "build": "rollup -c rollup.config.js",
+        "dev": "rollup -c rollup.config.js --watch"
+    },
     "devDependencies": {
         "@hmil/test-svelte": "0.0.0",
+        "@hmil/test-common": "0.0.0",
         "@hmil/ucl-react": "0.0.0",
         "@hmil/ucl-spec": "0.0.0",
         "@rollup/plugin-node-resolve": "^13.0.5",
-        "@types/react-dom": "^17.0.9",
         "@types/react": "^17.0.27",
-        "react-dom": "^17.0.2",
+        "@types/react-dom": "^17.0.9",
         "react": "^17.0.2",
+        "react-dom": "^17.0.2",
         "rollup": "^2.58.0",
         "ts-loader": "^9.2.6",
         "tslib": "^2.0.0",
         "typescript": "^4.0.0",
+        "webpack": "^5.57.1",
         "webpack-cli": "^4.8.0",
-        "webpack-dev-server": "^4.3.1",
-        "webpack": "^5.57.1"
+        "webpack-dev-server": "^4.3.1"
     }
 }

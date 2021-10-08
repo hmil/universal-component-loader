@@ -1,56 +1,44 @@
 <svelte:options tag="my-svelte-app" />
 
 <script lang="ts">
+    import type { Counter } from '@hmil/test-common';
     import { MyReactComponentSpec } from '@hmil/test-react/widget';
     import { loadComponent } from '@hmil/ucl-svelte';
     import { MySvelteComponentSpec } from './widget';
 
+    export let target: 'react' | 'svelte' = 'svelte';
 
-    const date = new Date();
-    const NAMES = [ 'John', 'Akshay', 'Michel' ];
-    let currentName = 0;
-
-    $: user = {
-        birthdate: date,
-        name: NAMES[currentName]
-    }
-
-    function bumpName() {
-        currentName = (currentName + 1) % NAMES.length;
-    }
+    let counter: Counter = {
+        count: 0
+    };
 
     const MyReactComponent = loadComponent(MyReactComponentSpec);
     const MySvelteComponent = loadComponent(MySvelteComponentSpec);
 </script>
 
-<main>
-    <h1>Hello {user.name}!</h1>
-    <button on:click={bumpName}></button>
-    <MyReactComponent user={user} on:setUser={(evt) => {
-        NAMES.push(evt.detail.name);
-        currentName = NAMES.length - 1;
-    }}/>
-    <MySvelteComponent user={user} />
-</main>
+<section class="container">
+    <div class="thumbnail">
+        {#if target === 'react'}
+            <MyReactComponent counter={counter} on:counterChange={(evt) => counter = evt.detail } />
+        {:else}
+            <MySvelteComponent counter={counter} on:counterChange={(evt) => counter = evt.detail }/>
+        {/if}
+    </div>
+    <img src="/arrow.svg" alt="included in">
+    <div class="thumbnail">
+        <MySvelteComponent counter={counter} on:counterChange={(evt) => counter = evt.detail } />
+    </div>
+</section>
 
 <style>
-    main {
-        text-align: center;
-        padding: 1em;
-        max-width: 240px;
-        margin: 0 auto;
-    }
 
-    h1 {
-        color: #ff3e00;
-        text-transform: uppercase;
-        font-size: 4em;
-        font-weight: 100;
-    }
+.container {
+    display: inline-flex;
+    height: 100%;
+}
 
-    @media (min-width: 640px) {
-        main {
-            max-width: none;
-        }
-    }
+.thumbnail {
+    width: 100px;
+    height: 100px;
+}
 </style>

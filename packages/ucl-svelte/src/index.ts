@@ -22,7 +22,7 @@ export function loadComponent<P extends {}, E extends {}>(def: ComponentBundle<P
                 def.$$events.map(evt => `on:${evt}`)
             } />
         {:else}
-            ${def.placeholder}
+            ${def.placeholder ?? DEFAULT_PLACEHOLDER}
         {/if}
     `).js.code;
 
@@ -32,5 +32,9 @@ export function loadComponent<P extends {}, E extends {}>(def: ComponentBundle<P
 
     const fn = new Function('svelte_internal', 'onMount', '__loadDefinition', replaced);
 
-    return fn(svelte_internal, onMount, def.load);
+    return fn({...svelte_internal, bubble: function () {
+        console.log('bubble');
+        // @ts-ignore
+        svelte_internal.bubble.call(this, ...arguments);
+    }}, onMount, def.load);
 }

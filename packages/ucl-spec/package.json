@@ -6,7 +6,8 @@
     "author": "Hadrien Milano <hadrien.milano@appdynamics.com>",
     "license": "MIT",
     "scripts": {
-        "build": "tsc -p ."
+        "build": "tsc -p .",
+        "dev": "tsc -p . --watch"
     },
     "devDependencies": {
         "typescript": "^4.4.3"

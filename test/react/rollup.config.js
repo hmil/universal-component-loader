@@ -7,7 +7,7 @@ export default {
         'widget/index': 'src/widget/index.ts'
     },
     external: [
-        'react', 'react-dom',
+        'react', 'react-dom', 'styled-components',
         /^@hmil\//
     ],
     output: {

@@ -6,15 +6,15 @@
     "author": "Hadrien Milano <hadrien.milano@appdynamics.com>",
     "license": "MIT",
     "scripts": {
-        "build": "yarn build:ucl-spec; yarn build:ucl-react; yarn build:ucl-svelte",
-        "build:ucl-spec": "cd packages/ucl-spec && yarn build",
-        "build:ucl-react": "cd packages/ucl-react && yarn build",
-        "build:ucl-svelte": "cd packages/ucl-svelte && yarn build"
+        "dev": "lerna run --parallel dev"
     },
     "workspaces": {
         "packages": [
             "packages/*",
             "test/*"
         ]
+    },
+    "devDependencies": {
+        "lerna": "^4.0.0"
     }
 }
