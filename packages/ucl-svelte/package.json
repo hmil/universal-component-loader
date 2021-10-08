@@ -7,13 +7,11 @@
     "sideEffects": false,
     "scripts": {
         "build": "tsc -p .",
-        "compress-template": "terser template.js --compress --mangle",
         "dev": "tsc -p . --watch"
     },
     "devDependencies": {
         "@hmil/ucl-spec": "0.0.0",
         "svelte": "^3.43.1",
-        "terser": "^5.9.0",
         "typescript": "^4.4.3"
     }
 }
